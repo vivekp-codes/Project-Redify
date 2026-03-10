@@ -26,8 +26,6 @@ const SideNavbar = () => {
       if (!profileImg) {
         profileImg =
           "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg";
-      } else if (!profileImg.startsWith("http")) {
-        profileImg = `http://localhost:8000${profileImg}`;
       }
 
       setUser({

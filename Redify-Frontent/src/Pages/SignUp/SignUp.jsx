@@ -44,7 +44,10 @@ const SignUp = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
 
@@ -60,11 +63,20 @@ const SignUp = () => {
     data.append("image", file);
 
     try {
-      const res = await axios.post("http://localhost:8000/image-upload", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await axios.post(
+        "https://redify-backend.onrender.com/image-upload",
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+      console.log("Image Upload Response:", res.data);
 
-      setFormData({ ...formData, profileImage: res.data.url });
+      setFormData((prev) => ({
+        ...prev,
+        profileImage: res.data.url,
+      }));
+
       toast.success("Profile image uploaded successfully!");
     } catch (err) {
       console.error(err);
@@ -74,6 +86,8 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Signup Data:", formData);
+    console.log("Final profileImage:", formData.profileImage);
 
     if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
       toast.error("Please fill all required fields");
@@ -85,9 +99,14 @@ const SignUp = () => {
       return;
     }
 
+    if (!formData.profileImage) {
+      toast.error("Please upload profile image first");
+      return;
+    }
+
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:8000/user/signup", {
+      const res = await axios.post("https://redify-backend.onrender.com/user/signup", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -230,7 +249,7 @@ const SignUp = () => {
             </div>
 
             {/* SOCIAL LOGIN (DUMMY) */}
-            
+
 
             {/* ACTION BUTTONS */}
             <div className="action-buttons">
