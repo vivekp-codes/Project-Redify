@@ -1,7 +1,7 @@
+require("dotenv").config();
 const express = require('express');
 const cors = require('cors');
-require("dotenv").config();
-const DB = require('./DataBase');
+const DB = require('./DataBase/Index');
 const UserRoutes = require('./Routes/UserRoutes');
 const ImageRoutes = require('./Routes/ImageRoutes');
 const BookRouters = require('./Routes/BookRoutes');
@@ -20,6 +20,8 @@ app.use(ImageRoutes);
 app.use(BookRouters);
 app.use(BorrowRoutes);
 
-app.listen(8000, () => {
-  console.log('E-Book-Backend server is running ...');
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, () => {
+  console.log(`E-Book-Backend server is running on port ${PORT}`);
 });

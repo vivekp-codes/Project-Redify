@@ -1,11 +1,19 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose.connect('mongodb://localhost:27017/E-Book-Db').then(()=>{
-    console.log('Mongoose Connected.....');  
-}).catch((e) => {
-    console.log(e);
-    
-});
+const connectDB = async () => {
+  try {
 
+    await mongoose.connect(process.env.MONGO_URI);
+
+    console.log("MongooseALTAS Connected.....");
+
+  } catch (error) {
+
+    console.log("MongoDB Connection Error:", error);
+
+  }
+};
+
+connectDB();
 
 module.exports = mongoose;
