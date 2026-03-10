@@ -22,7 +22,7 @@ const BorrowNotification = () => {
   const fetchOwnerRequests = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/borrow/requests",
+        "https://redify-backend.onrender.com/borrow/requests",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -49,7 +49,7 @@ const BorrowNotification = () => {
 
     try {
       await axios.patch(
-        `http://localhost:8000/borrow/approve/${selectedRequest._id}`,
+        `https://redify-backend.onrender.com/borrow/approve/${selectedRequest._id}`,
         { returnDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -64,7 +64,7 @@ const BorrowNotification = () => {
   const rejectRequest = async (id) => {
     try {
       await axios.patch(
-        `http://localhost:8000/borrow/reject/${id}`,
+        `https://redify-backend.onrender.com/borrow/reject/${id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -78,7 +78,7 @@ const BorrowNotification = () => {
   const markAsReturned = async (requestId) => {
     try {
       await axios.patch(
-        `http://localhost:8000/borrow/return/${requestId}`,
+        `https://redify-backend.onrender.com/borrow/return/${requestId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

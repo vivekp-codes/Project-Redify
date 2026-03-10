@@ -43,7 +43,7 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:8000/user/login", {
+      const res = await axios.post("https://redify-backend.onrender.com/user/login", {
         email: formData.email,
         password: formData.password,
       });

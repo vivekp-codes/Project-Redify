@@ -46,7 +46,7 @@ const AddBook = () => {
         data.append("image", imageFile);
 
         const res = await axios.post(
-            "http://localhost:8000/image-upload",
+            "https://redify-backend.onrender.com/image-upload",
             data,
             {
                 headers: {
@@ -75,7 +75,7 @@ const AddBook = () => {
             const userId = user._id || user.id;
 
             const res = await axios.get(
-                `http://localhost:8000/books/user/${userId}`,
+                `https://redify-backend.onrender.com/books/user/${userId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -107,7 +107,7 @@ const AddBook = () => {
             const token = localStorage.getItem("token");
 
             await axios.post(
-                "http://localhost:8000/book",
+                "https://redify-backend.onrender.com/book",
                 {
                     ...formData,
                     bookImage: imageUrl,
@@ -141,7 +141,7 @@ const AddBook = () => {
             const token = localStorage.getItem("token");
 
             await axios.patch(
-                `http://localhost:8000/book/${editBook._id}`,
+                `https://redify-backend.onrender.com/book/${editBook._id}`,
                 {
                     title: editData.title,
                     author: editData.author,
@@ -174,7 +174,7 @@ const AddBook = () => {
             const token = localStorage.getItem("token");
 
             await axios.delete(
-                `http://localhost:8000/book/${bookId}`,
+                `https://redify-backend.onrender.com/book/${bookId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

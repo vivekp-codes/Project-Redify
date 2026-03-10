@@ -38,7 +38,7 @@ const Home = () => {
     setLoading(true);
 
     try {
-      const res = await axios.get("http://localhost:8000/book", {
+      const res = await axios.get("https://redify-backend.onrender.com/book", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -60,7 +60,7 @@ const Home = () => {
 
     try {
       const res = await axios.get(
-        "http://localhost:8000/book",
+        "https://redify-backend.onrender.com/book",
         {
           headers: {
             Authorization: `Bearer ${token}`,

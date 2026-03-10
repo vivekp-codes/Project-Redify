@@ -21,7 +21,7 @@ const ViewBook = () => {
 
     const fetchBook = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/book/${id}`, {
+            const res = await axios.get(`https://redify-backend.onrender.com/book/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setBook(res.data);
@@ -36,7 +36,7 @@ const ViewBook = () => {
         try {
             setBtnLoading(true);
             await axios.post(
-                `http://localhost:8000/borrow/request/${id}`,
+                `https://redify-backend.onrender.com/borrow/request/${id}`,
                 {},
                 { headers: { Authorization: `Bearer ${token}` } }
             );

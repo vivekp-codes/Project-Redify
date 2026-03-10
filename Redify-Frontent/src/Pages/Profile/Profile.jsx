@@ -13,7 +13,7 @@ const Profile = () => {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          "http://localhost:8000/user/profile",
+          "https://redify-backend.onrender.com/user/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,

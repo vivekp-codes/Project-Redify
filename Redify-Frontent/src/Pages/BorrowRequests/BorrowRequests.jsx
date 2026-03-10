@@ -17,7 +17,7 @@ const BorrowRequests = () => {
   const fetchMyRequests = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/borrow/my-requests",
+        "https://redify-backend.onrender.com/borrow/my-requests",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
