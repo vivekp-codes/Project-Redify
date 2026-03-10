@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./SideNavbar.css";
+import "./SideNavBar.css";
 
 const SideNavbar = () => {
   const navigate = useNavigate();
