@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SideNavbar from "../../Components/SideNavBar/SideNavBar";
 import "./ViewBook.css";
+import API_URL from "../../config/api";
 
 const ViewBook = () => {
     const { id } = useParams();
@@ -21,7 +22,7 @@ const ViewBook = () => {
 
     const fetchBook = async () => {
         try {
-            const res = await axios.get(`https://redify-backend.onrender.com/book/${id}`, {
+            const res = await axios.get(`${API_URL}/book/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setBook(res.data);
@@ -36,7 +37,7 @@ const ViewBook = () => {
         try {
             setBtnLoading(true);
             await axios.post(
-                `https://redify-backend.onrender.com/borrow/request/${id}`,
+                `${API_URL}/borrow/request/${id}`,
                 {},
                 { headers: { Authorization: `Bearer ${token}` } }
             );

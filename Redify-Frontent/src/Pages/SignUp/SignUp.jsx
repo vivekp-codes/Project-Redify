@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./SignUp.css";
+import API_URL from "../../config/api";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ const SignUp = () => {
 
     try {
       const res = await axios.post(
-        "https://redify-backend.onrender.com/image-upload",
+        `${API_URL}/image-upload`,
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -106,7 +107,7 @@ const SignUp = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post("https://redify-backend.onrender.com/user/signup", {
+      const res = await axios.post(`${API_URL}/user/signup`, {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -154,102 +155,118 @@ const SignUp = () => {
 
           <form className="signup-form" onSubmit={handleSubmit}>
 
-            {/* ROW 1 : ACCOUNT DETAILS */}
-            <div className="form-row two-col">
-              <input
-                ref={nameRef}
-                type="text"
-                placeholder="Full Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                onKeyDown={(e) => handleKeyDown(e, emailRef)}
-              />
-              <input
-                ref={emailRef}
-                type="email"
-                placeholder="Email Address"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                onKeyDown={(e) => handleKeyDown(e, passwordRef)}
-              />
+            {/* SECTION 1 : ACCOUNT DETAILS */}
+            <div className="form-section-block">
+              <div className="section-title">
+                <span className="section-icon"></span>
+                Account Details
+              </div>
+
+              <div className="form-row two-col">
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  onKeyDown={(e) => handleKeyDown(e, emailRef)}
+                />
+                <input
+                  ref={emailRef}
+                  type="email"
+                  placeholder="Email Address"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  onKeyDown={(e) => handleKeyDown(e, passwordRef)}
+                />
+              </div>
+
+              <div className="form-row two-col">
+                <input
+                  ref={passwordRef}
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  onKeyDown={(e) => handleKeyDown(e, confirmRef)}
+                />
+                <input
+                  ref={confirmRef}
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  onKeyDown={(e) => handleKeyDown(e, houseRef)}
+                />
+              </div>
             </div>
 
-            <div className="form-row two-col">
-              <input
-                ref={passwordRef}
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                onKeyDown={(e) => handleKeyDown(e, confirmRef)}
-              />
-              <input
-                ref={confirmRef}
-                type="password"
-                placeholder="Confirm Password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                onKeyDown={(e) => handleKeyDown(e, houseRef)}
-              />
+            {/* SECTION 2 : ADDRESS */}
+            <div className="form-section-block">
+              <div className="section-label">
+                <span className="section-icon"></span>
+                Address Information
+              </div>
+
+              <div className="form-row two-col">
+                <input
+                  ref={houseRef}
+                  type="text"
+                  placeholder="House Name"
+                  name="house"
+                  value={formData.house}
+                  onChange={handleChange}
+                  onKeyDown={(e) => handleKeyDown(e, cityRef)}
+                />
+                <input
+                  ref={cityRef}
+                  type="text"
+                  placeholder="City"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  onKeyDown={(e) => handleKeyDown(e, districtRef)}
+                />
+              </div>
+
+              <div className="form-row two-col">
+                <input
+                  ref={districtRef}
+                  type="text"
+                  placeholder="District"
+                  name="district"
+                  value={formData.district}
+                  onChange={handleChange}
+                  onKeyDown={(e) => handleKeyDown(e, pincodeRef)}
+                />
+                <input
+                  ref={pincodeRef}
+                  type="text"
+                  placeholder="Pincode"
+                  name="pincode"
+                  value={formData.pincode}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
 
-            {/* ROW 2 : ADDRESS */}
-            <div className="form-row four-col">
-              <input
-                ref={houseRef}
-                type="text"
-                placeholder="House Name"
-                name="house"
-                value={formData.house}
-                onChange={handleChange}
-                onKeyDown={(e) => handleKeyDown(e, cityRef)}
-              />
-              <input
-                ref={cityRef}
-                type="text"
-                placeholder="City"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                onKeyDown={(e) => handleKeyDown(e, districtRef)}
-              />
-              <input
-                ref={districtRef}
-                type="text"
-                placeholder="District"
-                name="district"
-                value={formData.district}
-                onChange={handleChange}
-                onKeyDown={(e) => handleKeyDown(e, pincodeRef)}
-              />
-              <input
-                ref={pincodeRef}
-                type="text"
-                placeholder="Pincode"
-                name="pincode"
-                value={formData.pincode}
-                onChange={handleChange}
-              />
-            </div>
-
-            {/* ROW 3 : PROFILE IMAGE */}
+            {/* PROFILE IMAGE */}
             <div className="profile-upload-card">
               <label className="upload-box">
                 {preview ? (
                   <img src={preview} alt="Profile Preview" />
                 ) : (
-                  <span>Upload Profile Image</span>
+                  <span className="upload-placeholder">
+                    <span className="upload-plus">+</span>
+                    <span>Add Profile Photo</span>
+                  </span>
                 )}
                 <input type="file" hidden onChange={handleImageChange} />
               </label>
             </div>
-
-            {/* SOCIAL LOGIN (DUMMY) */}
-
 
             {/* ACTION BUTTONS */}
             <div className="action-buttons">
@@ -258,11 +275,11 @@ const SignUp = () => {
                 className="login-btn-sig"
                 onClick={() => navigate("/login")}
               >
-                Login
+                Already have an account?
               </button>
 
               <button className="signup-btn" type="submit" disabled={loading}>
-                {loading ? <div className="button-loader"></div> : "Sign Up"}
+                {loading ? <div className="button-loader"></div> : "Create Account"}
               </button>
             </div>
 

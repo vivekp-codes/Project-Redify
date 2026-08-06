@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
+import API_URL from "../../config/api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post("https://redify-backend.onrender.com/user/login", {
+      const res = await axios.post(`${API_URL}/user/login`, {
         email: formData.email,
         password: formData.password,
       });

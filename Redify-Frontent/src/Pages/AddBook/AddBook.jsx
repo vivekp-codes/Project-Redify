@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Pencil, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import "./AddBook.css";
+import API_URL from "../../config/api";
 
 const AddBook = () => {
     const navigate = useNavigate();
@@ -46,7 +47,7 @@ const AddBook = () => {
         data.append("image", imageFile);
 
         const res = await axios.post(
-            "https://redify-backend.onrender.com/image-upload",
+            `${API_URL}/image-upload`,
             data,
             {
                 headers: {
@@ -75,7 +76,7 @@ const AddBook = () => {
             const userId = user._id || user.id;
 
             const res = await axios.get(
-                `https://redify-backend.onrender.com/books/user/${userId}`,
+                `${API_URL}/books/user/${userId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -107,7 +108,7 @@ const AddBook = () => {
             const token = localStorage.getItem("token");
 
             await axios.post(
-                "https://redify-backend.onrender.com/book",
+                `${API_URL}/book`,
                 {
                     ...formData,
                     bookImage: imageUrl,
@@ -141,7 +142,7 @@ const AddBook = () => {
             const token = localStorage.getItem("token");
 
             await axios.patch(
-                `https://redify-backend.onrender.com/book/${editBook._id}`,
+                `${API_URL}/book/${editBook._id}`,
                 {
                     title: editData.title,
                     author: editData.author,
@@ -174,7 +175,7 @@ const AddBook = () => {
             const token = localStorage.getItem("token");
 
             await axios.delete(
-                `https://redify-backend.onrender.com/book/${bookId}`,
+                `${API_URL}/book/${bookId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

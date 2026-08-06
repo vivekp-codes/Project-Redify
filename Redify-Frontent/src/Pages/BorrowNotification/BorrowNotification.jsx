@@ -4,6 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SideNavbar from "../../Components/SideNavBar/SideNavBar";
 import "./BorrowNotification.css";
+import API_URL from "../../config/api";
 
 const BorrowNotification = () => {
   const [requests, setRequests] = useState([]);
@@ -22,7 +23,7 @@ const BorrowNotification = () => {
   const fetchOwnerRequests = async () => {
     try {
       const res = await axios.get(
-        "https://redify-backend.onrender.com/borrow/requests",
+        `${API_URL}/borrow/requests`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -49,7 +50,7 @@ const BorrowNotification = () => {
 
     try {
       await axios.patch(
-        `https://redify-backend.onrender.com/borrow/approve/${selectedRequest._id}`,
+        `${API_URL}/borrow/approve/${selectedRequest._id}`,
         { returnDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -64,7 +65,7 @@ const BorrowNotification = () => {
   const rejectRequest = async (id) => {
     try {
       await axios.patch(
-        `https://redify-backend.onrender.com/borrow/reject/${id}`,
+        `${API_URL}/borrow/reject/${id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -78,7 +79,7 @@ const BorrowNotification = () => {
   const markAsReturned = async (requestId) => {
     try {
       await axios.patch(
-        `https://redify-backend.onrender.com/borrow/return/${requestId}`,
+        `${API_URL}/borrow/return/${requestId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

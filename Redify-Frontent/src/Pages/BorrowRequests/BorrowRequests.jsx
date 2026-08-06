@@ -4,6 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SideNavbar from "../../Components/SideNavBar/SideNavBar";
 import "./BorrowRequests.css";
+import API_URL from "../../config/api";
 
 const BorrowRequests = () => {
   const [requests, setRequests] = useState([]);
@@ -17,7 +18,7 @@ const BorrowRequests = () => {
   const fetchMyRequests = async () => {
     try {
       const res = await axios.get(
-        "https://redify-backend.onrender.com/borrow/my-requests",
+        `${API_URL}/borrow/my-requests`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

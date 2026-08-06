@@ -1,4 +1,5 @@
 import "./Home.css";
+import API_URL from "../../config/api";
 import SideNavbar from "../../Components/SideNavBar/SideNavBar";
 import Footer from "../../Components/Footer/Footer"
 import axios from "axios";
@@ -38,7 +39,7 @@ const Home = () => {
     setLoading(true);
 
     try {
-      const res = await axios.get("https://redify-backend.onrender.com/book", {
+      const res = await axios.get(`${API_URL}/book`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -60,7 +61,7 @@ const Home = () => {
 
     try {
       const res = await axios.get(
-        "https://redify-backend.onrender.com/book",
+        `${API_URL}/book`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import SideNavbar from '../../Components/SideNavBar/SideNavBar'
 import "./Profile.css";
+import API_URL from "../../config/api";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -13,7 +14,7 @@ const Profile = () => {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          "https://redify-backend.onrender.com/user/profile",
+          `${API_URL}/user/profile`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
